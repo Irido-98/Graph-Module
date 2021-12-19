@@ -27,6 +27,7 @@ def linear(a, b):
 
 linear(a, b)
 
+
 # User inputs the gradient and the y-intercept
 a = float(Fraction(input('Enter coefficient of x^2: ')))
 
@@ -40,25 +41,32 @@ def quadratic(a, b, c):
     dis = b * b - 4 * a * c
     sqrt_val = math.sqrt(abs(dis))
 
-    # checking condition for discriminant
-    if dis > 0:
-        print(" distinct roots ")
-        print((-b + sqrt_val) / (2 * a))
-        print((-b - sqrt_val) / (2 * a))
+    if a != 0:
+        # checking condition for discriminant
+        if dis > 0:
+            root1 = (round((-b + sqrt_val) / (2 * a), 3), 0.0)
+            root2 = (round((-b - sqrt_val) / (2 * a), 3), 0.0)
+            if root1 == (-0.0, 0.0):
+                root1 = (0.0, 0.0)
+            elif root2 == (-0.0, 0.0):
+                root2 = (0.0, 0.0)
+            print('Distinct roots at:', root1, root2)
 
-    elif dis == 0:
-        print(" repeated roots")
-        print(-b / (2 * a))
+        elif dis == 0:
+            root = (round((-b / (2 * a)), 3), 0.0)
+            if root == (-0.0, 0.0):
+                root = (0.0, 0.0)
+            print('Repeated root at:', root)
 
-        # when discriminant is less than 0
-    else:
-        print("Complex Roots")
-        print(- b / (2 * a), " + i", sqrt_val / (2 * a))
-        print(- b / (2 * a), " - i", sqrt_val / (2 * a))
+        # when discriminant is less than 0. Complex roots
+        else:
+            root1 = str(round(- b / (2 * a), 3)) + '+' + str(round(sqrt_val / (2 * a), 3)) + 'i'
+            root2 = str(round(- b / (2 * a), 3)) + '-' + str(round(sqrt_val / (2 * a), 3)) + 'i'
+            print('Complex roots at:', root1 + ' and ' + root2)
 
-        # If a is 0, then incorrect equation
+    # If a is 0, then tell user to use linear solver
     if a == 0:
-        print("Run linear solver")
+        print("You inputted a linear equation. To solve this, run the linear solver")
 
 
 quadratic(a, b, c)
