@@ -1,10 +1,6 @@
 from fractions import Fraction
 import math
-
-# User inputs the gradient and the y-intercept
-a = float(Fraction(input('Enter coefficient of x (gradient): ')))
-
-b = float(Fraction(input('Enter y-intercept: ')))
+import numpy as np
 
 
 def linear(a, b):
@@ -14,26 +10,13 @@ def linear(a, b):
         # Since -0.0 is not correct math syntax
         if x_root == -0.0:
             x_root = 0.0
-
-        y_root = a * x_root + b
-
-        return x_root, y_root
+        y_root = 0.0
+        print(x_root, y_root)
     # If gradient is 0, check if it crosses x-axes
     if a == 0 and b == 0:
-        return 'infinite roots'
+        print('infinite roots')
     elif a == 0:
-        return 'no roots'
-
-
-linear(a, b)
-
-
-# User inputs the gradient and the y-intercept
-a = float(Fraction(input('Enter coefficient of x^2: ')))
-
-b = float(Fraction(input('Enter coefficient of x: ')))
-
-c = float(Fraction(input('Enter constant: ')))
+        print('no roots')
 
 
 def quadratic(a, b, c):
@@ -69,4 +52,48 @@ def quadratic(a, b, c):
         print("You inputted a linear equation. To solve this, run the linear solver")
 
 
-quadratic(a, b, c)
+def cubic(a, b, c, d):
+    # Check to see input is actually a cubic
+    if a == 0 and b != 0:
+        print('Run the quadratic solver ')
+    elif a == 0 and b == 0:
+        print('Run the linear solver')
+
+    elif a != 0:
+        # Function only takes in arrays
+        coeff = [a, b, c, d]
+        # Using numpy to find the roots and then rounding them to 3 decimal places
+        roots = np.roots(coeff)
+        roundedroots = np.around(roots, 3)
+        # Outputting the roots as a string
+        stringroots = np.array2string(roundedroots)
+        print(stringroots)
+
+
+# This will let the user choose which solver they need and then input the required coefficients
+print('Input the number to choose the solver required: 1 - Linear, 2 - Quadratic, 3 - Cubic')
+solverchoice = int(input('Enter your choice'))
+
+if solverchoice == 1:
+    # User inputs the gradient and the y-intercept
+    a = float(Fraction(input('Enter coefficient of x: ')))
+    b = float(Fraction(input('Enter constant: ')))
+    c = 0
+    d = 0
+    linear(a, b)
+elif solverchoice == 2:
+    # User inputs the coefficients
+    a = float(Fraction(input('Enter coefficient of x^2: ')))
+    b = float(Fraction(input('Enter coefficient of x: ')))
+    c = float(Fraction(input('Enter constant: ')))
+    d = 0
+    quadratic(a, b, c)
+elif solverchoice == 3:
+    # User inputs the coefficients
+    a = float(Fraction(input('Enter coefficient of x^3: ')))
+    b = float(Fraction(input('Enter coefficient of x^2: ')))
+    c = float(Fraction(input('Enter coefficient of x: ')))
+    d = float(Fraction(input('Enter constant: ')))
+    cubic(a, b, c, d)
+elif solverchoice != 1 or solverchoice != 2 or solverchoice != 3:
+    print('Choose between 1, 2 or 3')
