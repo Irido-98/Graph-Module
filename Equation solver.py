@@ -71,29 +71,32 @@ def cubic(a, b, c, d):
 
 
 # This will let the user choose which solver they need and then input the required coefficients
-print('Input the number to choose the solver required: 1 - Linear, 2 - Quadratic, 3 - Cubic')
-solverchoice = int(input('Enter your choice'))
-
-if solverchoice == 1:
-    # User inputs the gradient and the y-intercept
-    a = float(Fraction(input('Enter coefficient of x: ')))
-    b = float(Fraction(input('Enter constant: ')))
-    c = 0
-    d = 0
-    linear(a, b)
-elif solverchoice == 2:
-    # User inputs the coefficients
-    a = float(Fraction(input('Enter coefficient of x^2: ')))
-    b = float(Fraction(input('Enter coefficient of x: ')))
-    c = float(Fraction(input('Enter constant: ')))
-    d = 0
-    quadratic(a, b, c)
-elif solverchoice == 3:
-    # User inputs the coefficients
-    a = float(Fraction(input('Enter coefficient of x^3: ')))
-    b = float(Fraction(input('Enter coefficient of x^2: ')))
-    c = float(Fraction(input('Enter coefficient of x: ')))
-    d = float(Fraction(input('Enter constant: ')))
-    cubic(a, b, c, d)
-elif solverchoice != 1 or solverchoice != 2 or solverchoice != 3:
-    print('Choose between 1, 2 or 3')
+while True:
+    print('Input the number to choose the solver required: 1 - Linear, 2 - Quadratic, 3 - Cubic')
+    solverchoice = int(input('Enter your choice'))
+    if solverchoice == 1:
+        # User inputs the gradient and the y-intercept
+        a = float(Fraction(input('Enter coefficient of x: ')))
+        b = float(Fraction(input('Enter constant: ')))
+        c = 0
+        d = 0
+        linear(a, b)
+        break
+    elif solverchoice == 2:
+        # User inputs the coefficients
+        a = float(Fraction(input('Enter coefficient of x^2: ')))
+        b = float(Fraction(input('Enter coefficient of x: ')))
+        c = float(Fraction(input('Enter constant: ')))
+        d = 0
+        quadratic(a, b, c)
+        break
+    elif solverchoice == 3:
+        # User inputs the coefficients
+        a = float(Fraction(input('Enter coefficient of x^3: ')))
+        b = float(Fraction(input('Enter coefficient of x^2: ')))
+        c = float(Fraction(input('Enter coefficient of x: ')))
+        d = float(Fraction(input('Enter constant: ')))
+        cubic(a, b, c, d)
+        break
+    else:
+        print("You didn't choose 1,2 or 3")
