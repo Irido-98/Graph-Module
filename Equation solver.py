@@ -31,26 +31,28 @@ def quadratic(a, b, c):
     sqrt_val = math.sqrt(abs(dis))
     y_intercept = (0.0, c)
 
-    # Differential of quadratic
-    x = 2 * a
-    y = b
+    if a != 0:
 
-    # Finding the roots of the differential
-    dx_root = round((y / -x), 3)
+        # Differential of quadratic
+        x = 2 * a
+        y = b
 
-    # Since -0.0 is not correct math syntax
-    if dx_root == -0.0:
-        dx_root = 0.0
+        # Finding the roots of the differential
+        dx_root = round((y / -x), 3)
 
-    dy_root = round((a * (dx_root ** 2) + b * dx_root + c), 3)
-    turnpoint = (dx_root, dy_root)
+        # Since -0.0 is not correct math syntax
+        if dx_root == -0.0:
+            dx_root = 0.0
 
-    # Checking if turning point is max or min and outputting y-intercept
-    if a / abs(a) == 1:
-        print('Turning point is a minimum at: ', turnpoint)
-    elif a / abs(a) == -1:
-        print('Turning point is a maximum at: ', turnpoint)
-    print('Y-intercept at: ', y_intercept)
+        dy_root = round((a * (dx_root ** 2) + b * dx_root + c), 3)
+        turnpoint = (dx_root, dy_root)
+
+        # Checking if turning point is max or min and outputting y-intercept
+        if a / abs(a) == 1:
+            print('Turning point is a minimum at: ', turnpoint)
+        elif a / abs(a) == -1:
+            print('Turning point is a maximum at: ', turnpoint)
+        print('Y-intercept at: ', y_intercept)
 
     if a != 0:
         # checking condition for discriminant
@@ -87,47 +89,47 @@ def cubic(a, b, c, d):
     elif a == 0 and b == 0:
         print('Run the linear solver')
 
-    y_intercept = (0.0, d)
-
-    # First order differential
-    x = 3 * a ** 2
-    y = 2 * b
-    z = c
-    dis = y * y - 4 * x * z
-    sqrt_val = math.sqrt(abs(dis))
-
-    # If first differential has discrete roots, there are always 2 turning points
-    if dis > 0:
-        turnx1 = round((-y + sqrt_val) / (2 * x), 3)
-        turnx2 = round((-y - sqrt_val) / (2 * x), 3)
-        # Finding the x coord of turning points
-        if turnx1 == -0.0:
-            turnx1 = 0.0
-        elif turnx2 == -0.0:
-            turnx2 = 0.0
-        # Finding the y coord of turning points
-        turny1 = round((a * turnx1 ** 3) + (b * turnx1 ** 2) + (c * turnx1) + d, 3)
-        turny2 = round(((a * turnx2 ** 3) + (b * turnx2 ** 2) + (c * turnx2) + d), 3)
-        turnpoint1 = (turnx1, turny1)
-        turnpoint2 = (turnx2, turny2)
-        print('Turning points at: ', turnpoint1, turnpoint2)
-
-    # If first differential has repeated roots, there is only one stationary point of inflection
-    elif dis == 0:
-        inflectionx = round((-y / (2 * x)), 3)
-        # Finding x coord of inflection point
-        if inflectionx == -0.0:
-            inflectionx = 0.0
-        # Finding y coord of inflection point
-        inflectiony = round((a * inflectionx ** 3) + (b * inflectionx ** 2) + (c * inflectionx) + d, 3)
-        inflectionpoint = (inflectionx, inflectiony)
-        print('Stationary point of inflection at: ', inflectionpoint)
-
-    # If first differential has complex roots, there are 1 or 2 points of inflection
-    else:
-        print('There is only a points of inflection, no turning points')
-
     if a != 0:
+        y_intercept = (0.0, d)
+
+        # First order differential
+        x = 3 * a ** 2
+        y = 2 * b
+        z = c
+        dis = y * y - 4 * x * z
+        sqrt_val = math.sqrt(abs(dis))
+
+        # If first differential has discrete roots, there are always 2 turning points
+        if dis > 0:
+            turnx1 = round((-y + sqrt_val) / (2 * x), 3)
+            turnx2 = round((-y - sqrt_val) / (2 * x), 3)
+            # Finding the x coord of turning points
+            if turnx1 == -0.0:
+                turnx1 = 0.0
+            elif turnx2 == -0.0:
+                turnx2 = 0.0
+            # Finding the y coord of turning points
+            turny1 = round((a * turnx1 ** 3) + (b * turnx1 ** 2) + (c * turnx1) + d, 3)
+            turny2 = round(((a * turnx2 ** 3) + (b * turnx2 ** 2) + (c * turnx2) + d), 3)
+            turnpoint1 = (turnx1, turny1)
+            turnpoint2 = (turnx2, turny2)
+            print('Turning points at: ', turnpoint1, turnpoint2)
+
+        # If first differential has repeated roots, there is only one stationary point of inflection
+        elif dis == 0:
+            inflectionx = round((-y / (2 * x)), 3)
+            # Finding x coord of inflection point
+            if inflectionx == -0.0:
+                inflectionx = 0.0
+            # Finding y coord of inflection point
+            inflectiony = round((a * inflectionx ** 3) + (b * inflectionx ** 2) + (c * inflectionx) + d, 3)
+            inflectionpoint = (inflectionx, inflectiony)
+            print('Stationary point of inflection at: ', inflectionpoint)
+
+        # If first differential has complex roots, there are 1 or 2 points of inflection
+        else:
+            print('There is only a points of inflection, no turning points')
+
         # Function only takes in arrays
         coeff = [a, b, c, d]
         # Using numpy to find the roots and then rounding them to 3 decimal places
