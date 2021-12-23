@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
             else:
                 root = round(- b / (2 * a), 3)
                 imagroot = round(sqrt_val / (2 * a), 3)
-                self.rootslabel.setText(f'Complex roots: {root}+{imagroot}i,{root}-{imagroot}i')
+                self.rootslabel.setText(f'Complex roots: {root}+{imagroot}i, {root}-{imagroot}i')
 
     def clickcube(self):
         if self.Acubeinput.text() == '':
@@ -151,11 +151,66 @@ class Ui_MainWindow(object):
             # Using numpy to find the roots and then rounding them to 3 decimal places
             roots = np.roots(coeff)
             roundedroots = np.around(roots, 3)
-            # Outputting the roots as a string
-            stringroots = np.array2string(roundedroots)
-            self.rootslabel.setText(f'Roots: {stringroots}')
+            # Outputting the roots as a string and saving them to variables
+            x = str(roundedroots[0])
+            y = str(roundedroots[1])
+            z = str(roundedroots[2])
 
+            # If complex part is 0, get rid of it
+            x = x.replace('+0j', '')
+            y = y.replace('+0j', '')
+            z = z.replace('+0j', '')
 
+            # Checking if variable has a complex part and if not, adding it to an array
+            realarr = []
+            comparr = []
+            if 'j' not in x:
+                realarr.append(x)
+            else:
+                comparr.append(x)
+            if 'j' not in y:
+                realarr.append(y)
+            else:
+                comparr.append(y)
+            if 'j' not in z:
+                realarr.append(z)
+            else:
+                comparr.append(z)
+
+            while len(realarr) != 0:
+                # If length of array is 1, only 1 real root
+                if len(realarr) == 1:
+                    xroot = realarr[0]
+                    xroot = float(xroot[1:-1])
+                    root = xroot, 0.0
+                    self.rootslabel.setText(f'Roots: {root}, {comparr[0]}, {comparr[1]}')
+                    break
+
+                elif len(realarr) == 3:
+
+                    xroot1 = realarr[0]
+                    if xroot1 == '.':
+                        xroot1 = 0.0
+                    elif xroot1 != 0.0:
+                        xroot1 = float(xroot1)
+                    root1 = xroot1, 0.0
+
+                    xroot2 = realarr[1]
+                    if xroot2 == '.':
+                        xroot2 = 0.0
+                    elif xroot2 != 0.0:
+                        xroot2 = float(xroot2)
+                    root2 = xroot2, 0.0
+
+                    xroot3 = realarr[2]
+                    if xroot3 == '.':
+                        xroot3 = 0.0
+                    elif xroot3 != 0.0:
+                        xroot3 = float(xroot3)
+                    root3 = xroot3, 0.0
+
+                    self.rootslabel.setText(f'Roots: {root1}, {root2}, {root3}')
+                    break
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -330,19 +385,19 @@ class Ui_MainWindow(object):
         self.rootslabel = QtWidgets.QLabel(self.Output)
         self.rootslabel.setGeometry(QtCore.QRect(40, 120, 731, 71))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(18)
         self.rootslabel.setFont(font)
         self.rootslabel.setObjectName("rootslabel")
         self.yinterceptlabel = QtWidgets.QLabel(self.Output)
         self.yinterceptlabel.setGeometry(QtCore.QRect(40, 230, 731, 71))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(18)
         self.yinterceptlabel.setFont(font)
         self.yinterceptlabel.setObjectName("yinterceptlabel")
         self.turningpointslabel = QtWidgets.QLabel(self.Output)
         self.turningpointslabel.setGeometry(QtCore.QRect(40, 350, 731, 71))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(18)
         self.turningpointslabel.setFont(font)
         self.turningpointslabel.setObjectName("turningpointslabel")
         self.stackedWidget.addWidget(self.Output)
