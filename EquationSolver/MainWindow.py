@@ -1,5 +1,4 @@
 import sys
-from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QMainWindow
 # Import GUI from other file
@@ -30,17 +29,10 @@ class MainWindow:
     def showquadratic(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.Quadratic)
         self.ui.quadsolve_btn.clicked.connect(self.showoutput)
-        a = self.ui.Aquadinput.text()
-        b = self.ui.Bquadinput.text()
-        c = self.ui.Cquadinput.text()
 
     def showcubic(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.Cubic)
         self.ui.cubesolve_btn.clicked.connect(self.showoutput)
-        a = self.ui.Acubeinput.text()
-        b = self.ui.Bcubeinput.text()
-        c = self.ui.Ccubeinput.text()
-        d = self.ui.Dcubeinput.text()
 
     def showoutput(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.Output)
