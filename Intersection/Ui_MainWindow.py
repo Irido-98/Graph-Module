@@ -6,7 +6,9 @@ import numpy as np
 
 class Ui_MainWindow(object):
 
+    # When the user clicks solve, this executes
     def clicksolve(self):
+        # If input is empty, take it as 0
         if self.A1input.text() == '':
             self.A1input.setText('0')
         if self.B1input.text() == '':
@@ -15,11 +17,13 @@ class Ui_MainWindow(object):
             self.C1input.setText('0')
         if self.D1input.text() == '':
             self.D1input.setText('0')
+        # Convert the first equation into float form to aid further calculation
         a1 = float(Fraction(self.A1input.text()))
         b1 = float(Fraction(self.B1input.text()))
         c1 = float(Fraction(self.C1input.text()))
         d1 = float(Fraction(self.D1input.text()))
 
+        # If input is empty, take it as 0
         if self.A2input.text() == '':
             self.A2input.setText('0')
         if self.B2input.text() == '':
@@ -28,6 +32,8 @@ class Ui_MainWindow(object):
             self.C2input.setText('0')
         if self.D2input.text() == '':
             self.D2input.setText('0')
+
+        # Convert the first equation into float form to aid further calculation
         a2 = float(Fraction(self.A2input.text()))
         b2 = float(Fraction(self.B2input.text()))
         c2 = float(Fraction(self.C2input.text()))
@@ -109,7 +115,7 @@ class Ui_MainWindow(object):
                         break
 
                     elif len(realarr) == 3:
-
+                        # If length of array is 3, 3 real roots
                         xinter1 = realarr[0]
                         if xinter1 == '.':
                             xinter1 = 0.0

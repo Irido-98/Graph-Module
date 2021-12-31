@@ -6,6 +6,8 @@ from Ui_MainWindow import Ui_MainWindow
 
 
 class MainWindow:
+
+    # Initialise the main window when program opened
     def __init__(self):
         self.main_win = QMainWindow()
         self.ui = Ui_MainWindow()
@@ -20,6 +22,7 @@ class MainWindow:
     def show(self):
         self.main_win.show()
 
+    # If button is clicked, show the output screen
     def showoutput(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.output)
 
