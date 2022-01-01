@@ -1,6 +1,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+sys.path.append('../')
+from Ui_Roots import Ui_MainWindow
 
 class Ui_Graph(object):
+
+    def openRoots(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, Graph):
         Graph.setObjectName("Graph")
         Graph.resize(1000, 500)
@@ -61,7 +71,7 @@ class Ui_Graph(object):
         font.setPointSize(20)
         self.plot_btn.setFont(font)
         self.plot_btn.setObjectName("plot_btn")
-        self.roots_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.roots_btn = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openRoots())
         self.roots_btn.setGeometry(QtCore.QRect(5, 350, 221, 41))
         font = QtGui.QFont()
         font.setPointSize(15)

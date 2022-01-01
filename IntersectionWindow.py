@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QMainWindow
 # Import GUI from other file
-from Ui_MainWindow import Ui_MainWindow
+from Ui_Intersection import Ui_MainWindow
 
 
 class MainWindow:
