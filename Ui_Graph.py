@@ -1,15 +1,52 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 sys.path.append('../')
-from Ui_Roots import Ui_MainWindow
+from Ui_Roots import Ui_RootsWindow
+from Ui_Intersection import Ui_IntersectionWindow
 
 class Ui_Graph(object):
 
+    def openIntersection(self):
+        self.window = QtWidgets.QMainWindow()
+        self.uinter = Ui_IntersectionWindow()
+        self.uinter.setupUi(self.window)
+        self.window.show()
+        self.uinter.stackedWidget.setCurrentWidget(self.uinter.home)
+
+        # Setting up buttons - Set up signal (how to pc knows it is clicked) and then slot (what it does)
+        self.uinter.pushButton.clicked.connect(self.interoutput)
+
+        # If button is clicked, show the output screen
+    def interoutput(self):
+        self.uinter.stackedWidget.setCurrentWidget(self.uinter.output)
+
     def openRoots(self):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_RootsWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.Home)
+
+        # Setting up buttons - Set up signal (how to pc knows it is clicked) and then slot (what it does)
+        self.ui.line_btn.clicked.connect(self.showlinear)
+        self.ui.quad_btn.clicked.connect(self.showquadratic)
+        self.ui.cube_btn.clicked.connect(self.showcubic)
+
+
+    def showlinear(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.Linear)
+        self.ui.lineSolve_btn.clicked.connect(self.rootsoutput)
+
+    def showquadratic(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.Quadratic)
+        self.ui.quadsolve_btn.clicked.connect(self.rootsoutput)
+
+    def showcubic(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.Cubic)
+        self.ui.cubesolve_btn.clicked.connect(self.rootsoutput)
+
+    def rootsoutput(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.Output)
 
     def setupUi(self, Graph):
         Graph.setObjectName("Graph")
@@ -77,7 +114,7 @@ class Ui_Graph(object):
         font.setPointSize(15)
         self.roots_btn.setFont(font)
         self.roots_btn.setObjectName("roots_btn")
-        self.Intersection_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.Intersection_btn = QtWidgets.QPushButton(self.centralwidget, clicked  = lambda: self.openIntersection())
         self.Intersection_btn.setGeometry(QtCore.QRect(5, 425, 221, 41))
         font = QtGui.QFont()
         font.setPointSize(15)
@@ -123,7 +160,7 @@ class Ui_Graph(object):
 
     def retranslateUi(self, Graph):
         _translate = QtCore.QCoreApplication.translate
-        Graph.setWindowTitle(_translate("Graph", "MainWindow"))
+        Graph.setWindowTitle(_translate("Graph", "Graph"))
         self.Inputprompt.setText(_translate("Graph", "Enter equation in the form Y = f(x)"))
         self.graphspace.setText(_translate("Graph", "The graph will be here"))
         self.plot_btn.setText(_translate("Graph", "Plot"))

@@ -4,7 +4,7 @@ import math
 import numpy as np
 
 
-class Ui_MainWindow(object):
+class Ui_IntersectionWindow(object):
 
     # When the user clicks solve, this executes
     def clicksolve(self):
@@ -111,7 +111,7 @@ class Ui_MainWindow(object):
                         xinter = realarr[0]
                         xinter = float(xinter[1:-1])
                         inter = xinter, round(a1 * xinter ** 3 + b1 * xinter ** 2 + c1 * xinter + d1, 3)
-                        self.intersectionlabel.setText(f'Intersection: ({inter})')
+                        self.intersectionlabel.setText(f'Intersection: {inter}')
                         break
 
                     elif len(realarr) == 3:
@@ -237,15 +237,15 @@ class Ui_MainWindow(object):
         self.output = QtWidgets.QWidget()
         self.output.setObjectName("output")
         self.outputprompt = QtWidgets.QLabel(self.output)
-        self.outputprompt.setGeometry(QtCore.QRect(110, 10, 511, 91))
+        self.outputprompt.setGeometry(QtCore.QRect(60, 10, 600, 91))
         font = QtGui.QFont()
-        font.setPointSize(24)
+        font.setPointSize(20)
         self.outputprompt.setFont(font)
         self.outputprompt.setObjectName("outputprompt")
         self.intersectionlabel = QtWidgets.QLabel(self.output)
         self.intersectionlabel.setGeometry(QtCore.QRect(10, 240, 741, 81))
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(15)
         self.intersectionlabel.setFont(font)
         self.intersectionlabel.setObjectName("intersectionlabel")
         self.stackedWidget.addWidget(self.output)
@@ -260,7 +260,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("Intersection", "Intersection"))
         self.inputprompt.setText(_translate("MainWindow", "Please input equation 1 and equation 2 below:"))
         self.eq1label.setText(_translate("MainWindow", "Y=     X³ +      X² +      X +   "))
         self.eq2label.setText(_translate("MainWindow", "Y=     X³ +      X² +      X +   "))
@@ -273,6 +273,6 @@ class Ui_MainWindow(object):
         self.D1input.setPlaceholderText(_translate("MainWindow", "d1"))
         self.D2input.setPlaceholderText(_translate("MainWindow", "d2"))
         self.pushButton.setText(_translate("MainWindow", "Solve"))
-        self.outputprompt.setText(_translate("MainWindow", "The solution to the 2 equations is:"))
+        self.outputprompt.setText(_translate("MainWindow", "The intersection between the 2 equations are:"))
         self.intersectionlabel.setText(_translate("MainWindow", "Intersections:"))
 
