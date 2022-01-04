@@ -227,7 +227,7 @@ class Ui_IntersectionWindow(object):
         self.D2input.setFont(font)
         self.D2input.setAlignment(QtCore.Qt.AlignCenter)
         self.D2input.setObjectName("D2input")
-        self.pushButton = QtWidgets.QPushButton(self.home, clicked = lambda: self.clicksolve())
+        self.pushButton = QtWidgets.QPushButton(self.home, clicked=lambda: self.clicksolve())
         self.pushButton.setGeometry(QtCore.QRect(570, 460, 161, 71))
         font = QtGui.QFont()
         font.setPointSize(24)
@@ -275,4 +275,3 @@ class Ui_IntersectionWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Solve"))
         self.outputprompt.setText(_translate("MainWindow", "The intersection between the 2 equations are:"))
         self.intersectionlabel.setText(_translate("MainWindow", "Intersections:"))
-

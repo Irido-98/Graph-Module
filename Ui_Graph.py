@@ -1,10 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-sys.path.append('../')
 from Ui_Roots import Ui_RootsWindow
 from Ui_Intersection import Ui_IntersectionWindow
 
+
 class Ui_Graph(object):
+    if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+    if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
     def openIntersection(self):
         self.window = QtWidgets.QMainWindow()
@@ -17,6 +21,7 @@ class Ui_Graph(object):
         self.uinter.pushButton.clicked.connect(self.interoutput)
 
         # If button is clicked, show the output screen
+
     def interoutput(self):
         self.uinter.stackedWidget.setCurrentWidget(self.uinter.output)
 
@@ -31,7 +36,6 @@ class Ui_Graph(object):
         self.ui.line_btn.clicked.connect(self.showlinear)
         self.ui.quad_btn.clicked.connect(self.showquadratic)
         self.ui.cube_btn.clicked.connect(self.showcubic)
-
 
     def showlinear(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.Linear)
@@ -108,13 +112,13 @@ class Ui_Graph(object):
         font.setPointSize(20)
         self.plot_btn.setFont(font)
         self.plot_btn.setObjectName("plot_btn")
-        self.roots_btn = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openRoots())
+        self.roots_btn = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.openRoots())
         self.roots_btn.setGeometry(QtCore.QRect(5, 350, 221, 41))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.roots_btn.setFont(font)
         self.roots_btn.setObjectName("roots_btn")
-        self.Intersection_btn = QtWidgets.QPushButton(self.centralwidget, clicked  = lambda: self.openIntersection())
+        self.Intersection_btn = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.openIntersection())
         self.Intersection_btn.setGeometry(QtCore.QRect(5, 425, 221, 41))
         font = QtGui.QFont()
         font.setPointSize(15)
@@ -171,4 +175,3 @@ class Ui_Graph(object):
         self.Y3label.setText(_translate("Graph", "Y = "))
         self.Y4label.setText(_translate("Graph", "Y = "))
         self.Y5label.setText(_translate("Graph", "Y = "))
-
