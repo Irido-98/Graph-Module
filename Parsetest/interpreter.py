@@ -16,8 +16,8 @@ class Interpreter:
     def visit_SubtractNode(self, node):
         return Number(self.visit(node.node_a).value - self.visit(node.node_b).value)
 
-    # def visit_MultiplyNode(self, node):
-    #     return Number(self.visit(node.node_a).value * self.visit(node.node_b).value)
+    def visit_MultiplyNode(self, node):
+        return Number(self.visit(node.node_a).value * self.visit(node.node_b).value)
 
     def visit_DivideNode(self, node):
         try:
